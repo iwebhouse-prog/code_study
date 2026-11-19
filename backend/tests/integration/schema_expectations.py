@@ -1,0 +1,41 @@
+"""Tables and indexes that data-model.md requires migration 001 to create."""
+
+EXPECTED_TABLES = {
+    "users",
+    "projects",
+    "tasks",
+    "uploaded_code",
+    "code_files",
+    "learning_documents",
+    "practice_problems",
+    "questions",
+    "progress",
+    "refresh_tokens",
+}
+
+EXPECTED_INDEXES = {
+    "idx_users_email",
+    "idx_projects_user_id",
+    "idx_projects_deletion_status",
+    "idx_projects_user_active",
+    "idx_tasks_project_id",
+    "idx_tasks_deletion_status",
+    "idx_tasks_project_active",
+    "idx_tasks_number_order",
+    "idx_uploaded_code_task_id",
+    "idx_code_files_uploaded_code_id",
+    "idx_learning_documents_task_id",
+    "idx_learning_documents_status",
+    "idx_learning_documents_celery_task",
+    "idx_practice_problems_task_id",
+    "idx_practice_problems_number",
+    "idx_questions_task_id",
+    "idx_questions_user_id",
+    "idx_questions_task_user",
+    "idx_progress_task_id",
+    "idx_progress_user_id",
+    "idx_progress_task_user",
+    "idx_refresh_tokens_user_id",
+    "idx_refresh_tokens_hash",
+    "idx_refresh_tokens_expires",
+}
