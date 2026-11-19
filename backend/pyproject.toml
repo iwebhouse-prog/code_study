@@ -1,0 +1,58 @@
+[project]
+name = "code-study-backend"
+version = "0.0.0"
+requires-python = ">=3.11"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+    "S",   # flake8-bandit (security)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101", # assert is how pytest tests are written
+    "S105", # tests use fixed example passwords and secrets
+    "S106", # same, passed as keyword arguments
+    "S107", # same, as function default values
+    "S603", # tests run trusted local tools via subprocess
+    "S608", # test SQL is built from constants in the test itself
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+
+# Celery, kombu and Pygments ship without type hints (no py.typed).
+[[tool.mypy.overrides]]
+module = ["celery", "celery.*", "kombu", "kombu.*", "pygments", "pygments.*"]
+ignore_missing_imports = true
+
+# @app.task comes from untyped Celery; allow it only where tasks live.
+[[tool.mypy.overrides]]
+module = ["src.tasks.*"]
+disallow_untyped_decorators = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+# SQLAlchemy's async engine runs on greenlets and TestClient on a portal
+# thread; without these, lines executed after an await are reported as missed.
+concurrency = ["greenlet", "thread"]

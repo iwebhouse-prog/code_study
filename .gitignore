@@ -33,6 +33,9 @@ storage/uploads/*
 # ---- Browser-test working files (Playwright MCP logs, snapshots, test uploads) ----
 .playwright-mcp/
 
+# ---- Local agent-tool state (session logs; never share) ----
+.omc/
+
 # ---- Editors / OS ----
 .vscode/*
 !.vscode/settings.json
