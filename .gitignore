@@ -1,0 +1,45 @@
+# ---- Secrets (constitution V: never commit .env) ----
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ---- Node / frontend ----
+node_modules/
+coverage/
+*.log
+*.tsbuildinfo
+
+# ---- User uploads (keep the folder, not the code files) ----
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# ---- Browser-test working files (Playwright MCP logs, snapshots, test uploads) ----
+.playwright-mcp/
+
+# ---- Editors / OS ----
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
